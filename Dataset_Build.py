@@ -47,6 +47,11 @@ SongData=pd.DataFrame(CSV)
 SongData=SongData.transpose()
 print(SongData.head())
 
-SongData.to_pickle('SongPKL_test.pkl')
-SongData.to_csv('SongPKL_test.csv')
-print(SongData['idx_similar_artists'][0])
+#Dropping columns before to save computational time
+SongData.drop(['danceability', 'artist_latitude', 'artist_longitude', 'energy', 'artist_location', 'artist_id', 'artist_mbid', 'idx_artist_terms', 'idx_similar_artists', 'artist_7digitalid', 'title',
+               'track_7digitalid', 'artist_playmeid', 'release', 'release_7digitalid', 'analysis_sample_rate', 'audio_md5', 'track_id', 'artist_name', 'song_id', 'idx_sections_confidence',
+               'idx_sections_start', 'idx_bars_confidence', 'idx_bars_start', 'idx_beats_confidence', 'idx_beats_start', 'idx_segments_pitches', 'idx_segments_timbre', 'idx_segments_loudness_max_time', 'idx_tatums_confidence',
+               'idx_tatums_start'], inplace=True, axis=1)
+
+SongData.to_pickle('SongSmall.pkl')
+
